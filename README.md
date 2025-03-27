@@ -10,11 +10,11 @@ Swift Connect is an innovative multi-modal transport service designed to revolut
 - 🌍 **Eco-Friendly Routes**: Suggestions for the most environmentally friendly travel options.
 - 📲 **User-Friendly Interface**: Intuitive design for effortless navigation.
 
-## Getting Started
+### Getting Started
 
-### Download the App
+## Download the App
 
-## 📦 Download Our Latest Version (v1.01)
+### 📦 Download Our Latest Version (v1.01)
 
 [![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Version-blue)](https://github.com/Dharaneesh20/Swift_Connect/releases/latest)
 You can download the Swift Connect app and start your seamless transportation experience today!
@@ -25,9 +25,6 @@ Explore more about Swift Connect on our official website:
 [Swift Connect Website](https://dharaneesh20.github.io/Swift_Connect/)
 
 ---
-### 📦 Download Our Latest Version (v1.01)
-
-[![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Version-blue)](https://github.com/Dharaneesh20/Swift_Connect/releases/latest)
 
 ---
 
@@ -45,6 +42,13 @@ Explore more about Swift Connect on our official website:
 4. Choose the best route and mode of transport for your journey.
 5. Enjoy a hassle-free commute!
 
+## Our Team - Cipher - Google Developer Groups
+
+1.Dharaneesh R S
+2.Ganeshprabu Bo
+3.Deepakraj S
+4.Gowshekan A V R
+
 ## Contributing
 
 Contributions are welcome! If you'd like to improve Swift Connect, please follow these steps:
@@ -53,3 +57,4 @@ Contributions are welcome! If you'd like to improve Swift Connect, please follow
 2. Create a new branch:
    ```bash
    git checkout -b feature-name
+## Thanks For Supporting!
