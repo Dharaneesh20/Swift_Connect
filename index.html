@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swift Connect - Travel More, Worry Less</title>
+    <style>
+        :root {
+            --primary: #1e88e5;
+            --secondary: #ff6d00;
+            --accent: #43a047;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --danger: #e53935;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* SOS Button Styles */
+        .sos-button-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .sos-button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--danger);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            border: none;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(229, 57, 53, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(229, 57, 53, 0);
+            }
+        }
+        
+        /* AI Assistant Button Styles */
+        .ai-assistant-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .ai-assistant-container {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            width: 350px;
+            max-height: 500px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .ai-assistant-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ai-assistant-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .ai-message, .user-message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        
+        .ai-message {
+            background-color: var(--light);
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background-color: var(--primary);
+            color: white;
+            margin-left: auto;
+        }
+        
+        .ai-assistant-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .ai-assistant-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        
+        .ai-assistant-input button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e65100;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+        }
+        
+        .btn-danger:hover {
+            background-color: #c62828;
+        }
+        
+        section {
+            padding: 4rem 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+        
+        .features {
+            background-color: white;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .destinations {
+            background-color: var(--light);
+        }
+        
+        .destination-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .destination-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .destination-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .destination-info {
+            padding: 1.5rem;
+        }
+        
+        .destination-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .destination-price {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .search-form {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        /* Map Section */
+        .map-section {
+            background-color: white;
+            padding: 4rem 2rem;
+        }
+        
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-options {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .map-option {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .map-option:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .map-option.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Safety Features Section */
+        .safety-features {
+            background-color: var(--light);
+        }
+        
+        .testimonials {
+            background-color: white;
+            text-align: center;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .testimonial-slide {
+            padding: 2rem;
+        }
+        
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .contact {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact .section-title {
+            color: white;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-form .form-control {
+            margin-bottom: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .social-links {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SOS Button -->
+    <div class="sos-button-container">
+        <button class="sos-button" id="sosButton">SOS</button>
+    </div>
+    
+    <!-- AI Assistant Button -->
+    <button class="ai-assistant-button" id="aiAssistantButton">
+        🤖
+    </button>
+    
+    <!-- AI Assistant Chat Container -->
+    <div class="ai-assistant-container" id="aiAssistantContainer">
+        <div class="ai-assistant-header">
+            <h3>AI Travel Assistant</h3>
+            <span id="closeAiAssistant" style="cursor: pointer;">✖</span>
+        </div>
+        <div class="ai-assistant-messages" id="aiMessages">
+            <div class="ai-message">
+                Hello! I'm your AI travel assistant. I can help with translations, cultural insights, and local information. How can I assist you today?
+            </div>
+        </div>
+        <div class="ai-assistant-input">
+            <input type="text" id="aiMessageInput" placeholder="Type your message...">
+            <button id="sendAiMessage">Send</button>
+        </div>
+    </div>
+    
+    <!-- SOS Modal -->
+    <div id="sosModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeSosModal">&times;</span>
+            <h2 style="color: var(--danger); margin-bottom: 20px;">Emergency Alert</h2>
+            <p>We're sending your current location and information to the nearest police station.</p>
+            <div id="emergencyMap" style="width: 100%; height: 250px; margin: 20px 0; background-color: #f1f1f1;">
+                <img src="/api/placeholder/460/250" alt="Map showing your location" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <p id="locationInfo">Latitude: 37.7749, Longitude: -122.4194</p>
+            <p style="margin-top: 20px;">Emergency services have been notified. Stay calm and remain in your current location if safe to do so.</p>
+            <button class="btn btn-danger" style="width: 100%; margin-top: 20px;">End Emergency Call</button>
+        </div>
+    </div>
+    
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">✈</span>
+                <span>Swift Connect</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#safety">Safety</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#map">Maps</a></li>
+                <li><a href="#search">Search</a></li>
+                <li><a href="team.html">Our Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Travel More, Worry Less</h1>
+        <p>Let us handle the details while you focus on creating memories that last a lifetime.</p>
+        <div style="display: flex; gap: 20px;">
+            <a href="#search" class="btn">Plan Your Trip</a>
+            <a href="#safety" class="btn" style="background-color: #43a047;">Travel Safely</a>
+        </div>
+    </section>
+    
+    <section id="features" class="features">
+        <h2 class="section-title">Why Choose Swift Connect?</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 class="feature-title">Best Price Guarantee</h3>
+                <p>We guarantee the lowest prices on flights, hotels, and vacation packages. If you find a better deal elsewhere, we'll match it.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">24/7 Support</h3>
+                <p>Our travel experts are available around the clock to assist you with any questions or concerns before, during, or after your trip.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Fast Booking</h3>
+                <p>Our streamlined booking process gets you from browsing to booked in minutes, not hours. Save time for what matters.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Cultural Insights</h3>
+                <p>Get valuable information about local customs, traditions, and practices to ensure a respectful and authentic travel experience.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="safety" class="safety-features">
+        <h2 class="section-title">Travel Safety Features</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon" style="color: var(--danger);">🆘</div>
+                <h3 class="feature-title">SOS Emergency Button</h3>
+                <p>Instantly alert the nearest police station with your location and information in case of emergencies.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="color: var(--primary);">🗣️</div>
+                <h3 class="feature-title">AI Language Translator</h3>
+                <p>Break down language barriers with our real-time AI translation feature to communicate effectively with locals.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="color: var(--accent);">🚕</div>
+                <h3 class="feature-title">Transport & Health Services</h3>
+                <p>Quickly find reliable local transport options and the nearest hospitals or medical facilities in any location.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="color: var(--secondary);">🛂</div>
+                <h3 class="feature-title">Travel Advisories</h3>
+                <p>Stay updated with the latest travel advisories, local regulations, and safety information for your destination.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="destinations" class="destinations">
+        <h2 class="section-title">Popular Destinations</h2>
+        <div class="destination-grid">
+            <div class="destination-card">
+                <img src="/api/placeholder/400/300" alt="Bali" class="destination-img">
+                <div class="destination-info">
+                    <h3 class="destination-title">Bali, Indonesia</h3>
+                    <p class="destination-price">From $899</p>
+                    <p>Experience the paradise island with its beautiful beaches, lush rice terraces, and vibrant culture.</p>
+                    <a href="#" class="btn" data-destination="Bali">View Details</a>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="/api/placeholder/400/300" alt="Paris" class="destination-img">
+                <div class="destination-info">
+                    <h3 class="destination-title">Paris, France</h3>
+                    <p class="destination-price">From $799</p>
+                    <p>Explore the city of lights with its iconic landmarks, world-class museums, and delicious cuisine.</p>
+                    <a href="#" class="btn" data-destination="Paris">View Details</a>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="/api/placeholder/400/300" alt="Tokyo" class="destination-img">
+                <div class="destination-info">
+                    <h3 class="destination-title">Tokyo, Japan</h3>
+                    <p class="destination-price">From $1,099</p>
+                    <p>Discover the perfect blend of tradition and innovation in one of the world's most exciting metropolises.</p>
+                    <a href="#" class="btn" data-destination="Tokyo">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="map" class="map-section">
+        <h2 class="section-title">Interactive Travel Map</h2>
+        <div class="map-options">
+            <div class="map-option active" data-option="attractions">Tourist Attractions</div>
+            <div class="map-option" data-option="hotels">Hotels</div>
+            <div class="map-option" data-option="restaurants">Restaurants</div>
+            <div class="map-option" data-option="transport">Transport</div>
+            <div class="map-option" data-option="hospitals">Hospitals</div>
+            <div class="map-option" data-option="police">Police Stations</div>
+        </div>
+        <div class="map-container" id="destinationMap">
+            <img src="types-of-tourism.jpg" alt="Interactive map" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </section>
+    
+    <section id="search" class="search">
+        <h2 class="section-title">Find Your Perfect Trip</h2>
+        <form class="search-form" id="trip-search-form">
+            <div class="form-group">
+                <div>
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" class="form-control" placeholder="Where do you want to go?">
+                </div>
+                <div>
+                    <label for="departure">Departure Date</label>
+                    <input type="date" id="departure" class="form-control">
+                </div>
+                <div>
+                    <label for="return">Return Date</label>
+                    <input type="date" id="return" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="adults">Adults</label>
+                    <select id="adults" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2" selected>2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5+</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="children">Children</label>
+                    <select id="children" class="form-control">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4+</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="trip-type">Trip Type</label>
+                    <select id="trip-type" class="form-control">
+                        <option value="flight+hotel">Flight + Hotel</option>
+                        <option value="flight">Flight Only</option>
+                        <option value="hotel">Hotel Only</option>
+                        <option value="package">All-Inclusive Package</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Search</button>
+        </form>
+    </section>
+    
+    <section id="testimonials" class="testimonials">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-slide">
+                <p class="testimonial-text">"Swift Connect made planning our honeymoon so easy. Everything was perfectly arranged, and we didn't have to worry about a thing. The SOS button feature gave us peace of mind throughout our journey. Highly recommend!"</p>
+                <p class="testimonial-author">- Sarah & Michael</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <form class="contact-form" id="contact-form">
+            <div class="form-group">
+                <div>
+                    <input type="text" placeholder="Your Name" class="form-control" required>
+                </div>
+                <div>
+                    <input type="email" placeholder="Your Email" class="form-control" required>
+                </div>
+            </div>
+            <input type="text" placeholder="Subject" class="form-control" required>
+            <textarea placeholder="Your Message" class="form-control" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+    
+    <footer>
+        <div class="social-links">
+            <a href="#">📱</a>
+            <a href="#">📘</a>
+            <a href="#">📸</a>
+            <a href="#">🐦</a>
+        </div>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="team-page.html">Our Team</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">FAQs</a>
+        </div>
+        <p class="copyright">© 2025 Swift Connect Travel. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener ('DOMContentLoaded', function(){
+         
+            // Handle SOS Button
+            const sosButton = document.getElementById('sosButton');
+            const sosModal = document.getElementById('sosModal');
+            const closeSosModal = document.getElementById('closeSosModal');
+        }
+            sosButton.addEventListener('click', function() {
+                sosModal.style.display = 'block';
+                // In a real application, this would send emergency alert
+                console.log("Emergency alert sent!");
+            });
+            
+            closeSosModal.addEventListener('click', function() {
+                sosModal.style.display = 'none';
+            });
+            
+            // Handle AI Assistant
+            const aiButton = document.getElementById('aiAssistantButton');
+            const aiContainer = document.getElementById('aiAssistantContainer');
+            const closeAiAssistant = document.getElementById('closeAiAssistant');
+            const aiMessageInput = document.getElementById('aiMessageInput');
+            const sendAiMessage = document.getElementById('sendAiMessage');
+            const aiMessages = document.getElementById('aiMessages');
+            
+            aiButton.addEventListener('click', function() {
+                aiContainer.style.display = aiContainer.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            closeAiAssistant.addEventListener('click', function() {
+                aiContainer.style.display = 'none';
+            });
+            
+            // Simple AI chat functionality
+            function addMessage(text, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.
+            }
