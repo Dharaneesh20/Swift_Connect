@@ -25,6 +25,11 @@ Explore more about Swift Connect on our official website:
 [Swift Connect Website](https://dharaneesh20.github.io/Swift_Connect/)
 
 ---
+## 📦 Download
+
+[![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Version-blue)](https://github.com/Dharaneesh20/Swift_Connect/releases/latest)
+
+---
 
 ## Installation
 
