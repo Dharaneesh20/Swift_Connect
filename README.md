@@ -22,7 +22,7 @@ You can download the Swift Connect app and start your seamless transportation ex
 ### Visit Our Website
 
 Explore more about Swift Connect on our official website:  
-[Swift Connect Website](https://dharaneesh20.github.io/Swift_Connect/)
+[![Swift Connect Site](https://img.shields.io/badge/Click-Me%20-Green)](https://dharaneesh20.github.io/Swift_Connect/)
 
 ---
 
