@@ -44,10 +44,10 @@ Explore more about Swift Connect on our official website:
 
 ## Our Team - Cipher - Google Developer Groups
 
-1.Dharaneesh R S
-2.Ganeshprabu Bo
-3.Deepakraj S
-4.Gowshekan A V R
+1. Dharaneesh R S
+2. Ganeshprabu Bo
+3. Deepakraj S
+4. Gowshekan A V R
 
 ## Contributing
 
