@@ -12,17 +12,39 @@ Swift Connect is an innovative multi-modal transport service designed to revolut
 
 ## Getting Started
 
-### Prerequisites
+### Download the App
 
-Before getting started, ensure you have the following tools installed:
+You can download the Swift Connect app and start your seamless transportation experience today!
 
-- Xcode (version XX or higher)
-- Swift (version X.X)
-- CocoaPods (if using dependencies)
+[![Download for Android](https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg)](https://example.com/swiftconnect.apk)  
+[Click here to download the APK](https://example.com/swiftconnect.apk)
 
-### Installation
+### Visit Our Website
 
-1. Clone the repository:
+Explore more about Swift Connect on our official website:  
+[Swift Connect Website](https://example.com)
+
+---
+
+## Installation
+
+1. Download the APK file using the link above.
+2. Enable "Install from Unknown Sources" in your Android device settings.
+3. Open the downloaded APK file and follow the on-screen instructions to install the app.
+
+## Usage
+
+1. Launch the app.
+2. Enter your starting location and destination.
+3. View available transport options with real-time updates.
+4. Choose the best route and mode of transport for your journey.
+5. Enjoy a hassle-free commute!
+
+## Contributing
+
+Contributions are welcome! If you'd like to improve Swift Connect, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch:
    ```bash
-   git clone https://github.com/username/swift-connect.git
-   cd swift-connect
+   git checkout -b feature-name
