@@ -14,10 +14,10 @@ Swift Connect is an innovative multi-modal transport service designed to revolut
 
 ### Download the App
 
-You can download the Swift Connect app and start your seamless transportation experience today!
+## 📦 Download Our Latest Version (v1.01)
 
-[Download for Android](https://example.com/swiftconnect.apk)  
-[Click here to download the APK](https://example.com/swiftconnect.apk)
+[![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Version-blue)](https://github.com/Dharaneesh20/Swift_Connect/releases/latest)
+You can download the Swift Connect app and start your seamless transportation experience today!
 
 ### Visit Our Website
 
@@ -25,7 +25,7 @@ Explore more about Swift Connect on our official website:
 [Swift Connect Website](https://dharaneesh20.github.io/Swift_Connect/)
 
 ---
-## 📦 Download Our Latest Version (v1.01)
+### 📦 Download Our Latest Version (v1.01)
 
 [![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Version-blue)](https://github.com/Dharaneesh20/Swift_Connect/releases/latest)
 
