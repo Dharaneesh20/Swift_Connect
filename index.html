@@ -581,12 +581,9 @@
 </div>
 
 <!-- AI Assistant Button -->
-
 <button class="ai-assistant-button" id="aiAssistantButton" onclick="window.location.href='https://67e627b91bfe4bd771282b8a--magnificent-naiad-3d8cb8.netlify.app/';">
   🤖
 </button>
-
-
 
 <!-- AI Assistant Chat Container -->
 <div class="ai-assistant-container" id="aiAssistantContainer">
@@ -633,7 +630,8 @@
       <li><a href="#destinations">Destinations</a></li>
       <li><a href="#map">Maps</a></li>
       <li><a href="#search">Search</a></li>
-      <li><a href="team.html">Our Team</a></li>
+      <li><a href="Contact 1.html">Our Team</a></li>
+      <li><a href="About1.html">About Us</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="https://67e627b91bfe4bd771282b8a--magnificent-naiad-3d8cb8.netlify.app/">Swift Ai</a></li>
     </ul>
@@ -689,9 +687,11 @@
       <p>Break down language barriers with our real-time AI translation feature to communicate effectively with locals.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon" style="color: var(--accent);">🚕</div>
-      <h3 class="feature-title">Transport & Health Services</h3>
-      <p>Quickly find reliable local transport options and the nearest hospitals or medical facilities in any location.</p>
+      <a href="cab.html" style="text-decoration: none; color: inherit;">
+        <div class="feature-icon" style="color: var(--accent);">🚕</div>
+        <h3 class="feature-title">Transport & Health Services</h3>
+        <p>Quickly find reliable local transport options and the nearest hospitals or medical facilities in any location.</p>
+      </a>
     </div>
     <div class="feature-card">
       <div class="feature-icon" style="color: var(--secondary);">🛂</div>
@@ -743,7 +743,6 @@
     <a href="https://resilient-phoenix-1f06a7.netlify.app/" class="map-option" data-option="city"><div class="map-option active" data-option="transport">Transport</div></a>
     <a href="https://resilient-phoenix-1f06a7.netlify.app/" class="map-option" data-option="city"><div class="map-option active" data-option="hospitals">Hospitals</div></a>
     <a href="https://resilient-phoenix-1f06a7.netlify.app/" class="map-option" data-option="city"><div class="map-option active" data-option="police">Police</div></a>
-
   </div>
   <div class="map-container" id="destinationMap">
     <img src="types-of-tourism.jpg" alt="Interactive map" style="width: 100%; height: 100%; object-fit: cover;">
@@ -813,75 +812,76 @@
 </section>
 
 <section id="contact" class="contact">
-  <h2 class="section-title">Get in Touch</h2>
-  <form class="contact-form" id="contact-form">
-    <div class="form-group">
-      <div>
-        <input type="text" placeholder="Your Name" class="form-control" required>
+    <h2 class="section-title">Get in Touch</h2>
+    <form class="contact-form" id="contact-form">
+      <div class="form-group">
+        <div>
+          <input type="text" placeholder="Your Name" class="form-control" required>
+        </div>
+        <div>
+          <input type="email" placeholder="Your Email" class="form-control" required>
+        </div>
       </div>
-      <div>
-        <input type="email" placeholder="Your Email" class="form-control" required>
-      </div>
+      <input type="text" placeholder="Subject" class="form-control" required>
+      <textarea placeholder="Your Message" class="form-control" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+  
+  <footer>
+    <div class="social-links">
+      <a href="#">📱</a>
+      <a href="#">📘</a>
+      <a href="#">📸</a>
+      <a href="#">🐦</a>
     </div>
-    <input type="text" placeholder="Subject" class="form-control" required>
-    <textarea placeholder="Your Message" class="form-control" required></textarea>
-    <button type="submit" class="btn">Send Message</button>
-  </form>
-</section>
-
-<footer>
-  <div class="social-links">
-    <a href="#">📱</a>
-    <a href="#">📘</a>
-    <a href="#">📸</a>
-    <a href="#">🐦</a>
-  </div>
-  <div class="footer-links">
-    <a href="#">About Us</a>
-    <a href="team-page.html">Our Team</a>
-    <a href="#">Terms & Conditions</a>
-    <a href="#">Privacy Policy</a>
-    <a href="#">FAQs</a>
-  </div>
-  <p class="copyright">© 2025 Swift Connect Travel. All rights reserved.</p>
-</footer>
-
-<script>
-  document.addEventListener ('DOMContentLoaded', function(){
-
-    // Handle SOS Button
-    const sosButton = document.getElementById('sosButton');
-    const sosModal = document.getElementById('sosModal');
-    const closeSosModal = document.getElementById('closeSosModal');
-  }
-  sosButton.addEventListener('click', function() {
-    sosModal.style.display = 'block';
-    // In a real application, this would send emergency alert
-    console.log("Emergency alert sent!");
-  });
-
-  closeSosModal.addEventListener('click', function() {
-    sosModal.style.display = 'none';
-  });
-
-  // Handle AI Assistant
-  const aiButton = document.getElementById('aiAssistantButton');
-  const aiContainer = document.getElementById('aiAssistantContainer');
-  const closeAiAssistant = document.getElementById('closeAiAssistant');
-  const aiMessageInput = document.getElementById('aiMessageInput');
-  const sendAiMessage = document.getElementById('sendAiMessage');
-  const aiMessages = document.getElementById('aiMessages');>
-
-  aiButton.addEventListener('click', function() {
-    aiContainer.style.display = aiContainer.style.display === 'block' ? 'none' : 'block';
-  });
-
-  closeAiAssistant.addEventListener('click', function() {
-    aiContainer.style.display = 'none';
-  });
-
-  // Simple AI chat functionality
-  function addMessage(text, isUser) {
-    const messageDiv = document.createElement('div');
-    messageDiv.
-  }
+    <div class="footer-links">
+      <a href="About1.html">About Us</a>
+      <a href="Contact 1.html">Our Team</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">FAQs</a>
+    </div>
+    <p class="copyright">© 2025 Swift Connect Travel. All rights reserved.</p>
+  </footer>
+  
+  <script>
+    document.addEventListener ('DOMContentLoaded', function(){
+  
+      // Handle SOS Button
+      const sosButton = document.getElementById('sosButton');
+      const sosModal = document.getElementById('sosModal');
+      const closeSosModal = document.getElementById('closeSosModal');
+    }
+    sosButton.addEventListener('click', function() {
+      sosModal.style.display = 'block';
+      // In a real application, this would send emergency alert
+      console.log("Emergency alert sent!");
+    });
+  
+    closeSosModal.addEventListener('click', function() {
+      sosModal.style.display = 'none';
+    });
+  
+    // Handle AI Assistant
+    const aiButton = document.getElementById('aiAssistantButton');
+    const aiContainer = document.getElementById('aiAssistantContainer');
+    const closeAiAssistant = document.getElementById('closeAiAssistant');
+    const aiMessageInput = document.getElementById('aiMessageInput');
+    const sendAiMessage = document.getElementById('sendAiMessage');
+    const aiMessages = document.getElementById('aiMessages');>
+  
+    aiButton.addEventListener('click', function() {
+      aiContainer.style.display = aiContainer.style.display === 'block' ? 'none' : 'block';
+    });
+  
+    closeAiAssistant.addEventListener('click', function() {
+      aiContainer.style.display = 'none';
+    });
+  
+    // Simple AI chat functionality
+    function addMessage(text, isUser) {
+      const messageDiv = document.createElement('div');
+      messageDiv.
+    }
+  
