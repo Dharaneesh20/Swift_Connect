@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #278767b4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 20px;
+            color:black
+        }
+
+        .heading h1 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        .heading p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            width: 400px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-container:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .contact-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-container img:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .contact-container h3 {
+            margin: 10px 0 5px;
+            font-size: 1.4em;
+            color: #333;
+        }
+
+        .contact-container p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .contact-container .contact-info {
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        /* Additional Styles for Colors */
+        .contact-container:nth-child(1) {
+            background-color: #FFEBEE;
+        }
+
+        .contact-container:nth-child(2) {
+            background-color: #E3F2FD;
+        }
+
+        .contact-container:nth-child(3) {
+            background-color: #E8F5E9;
+        }
+
+        .contact-container:nth-child(4) {
+            background-color: #FFF3E0;
+        }
+    </style>
+</head>
+<body>
+
+    <header style="font-weight: 900;">SWIFT CONNECT</header>
+
+
+    <div class="heading">
+        <h1>Let's Connect</h1>
+        <p><b>"Feedback fuels innovation. Let’s shape the future, together!"</b></p>
+    </div>
+
+    <div class="contact-wrapper">
+        <div class="contact-container">
+            <img src="prabu11.jpg" alt="Member 1 Photo">
+            <h3>Prabu</h3>
+            <p><b>Full-Stack Developer</b></p>
+            <p class="contact-info">Email: ganeshprabu24@gmail.com</p>
+            <p class="contact-info">Phone: +91 7338703622</p>
+        </div>
+
+        <div class="contact-container">
+            <img src="ME 1.jpg" alt="Member 2 Photo">
+            <h3>Gowshekan A.V.R</h3>
+            <p><b>QA Tester</b></p>
+            <p class="contact-info">Email: gowshekangowshekan@gmail.com</p>
+            <p class="contact-info">Phone: +91 9363702220</p>
+        </div>
+
+        <div class="contact-container">
+            <img src="Dharaaneesh.jpg" alt="Member 3 Photo">
+            <h3>Dharaneesh R.S</h3>
+            <p><b>Back-End developer</b></p>
+            <p class="contact-info">Email: dharaneesh@gmail.com</p>
+            <p class="contact-info">Phone: +91 9363963840</p>
+        </div>
+
+        <div class="contact-container">
+            <img src="DP1.png" alt="Member 4 Photo">
+            <h3>deepakraj</h3>
+            <p><b>UI/UX Designer</b></p>
+            <p class="contact-info">Email: deepakraj.sundaresan@gmail.com</p>
+            <p class="contact-info">Phone: +91 9444308768</p>
+        </div>
+    </div>
+    <footer>
+       <h1><b>Toll free Helpline Number: ☎ 1800 88 2222</b></h1> 
+       <h1><center>🌐 www.swiftconnect.com</center></h1> 
+    </footer>
+
+</body>
+</html>
+
