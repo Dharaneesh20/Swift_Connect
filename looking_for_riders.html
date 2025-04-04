@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftConnect - Finding Your Ride</title>
+    <style>
+        :root {
+            --primary: #4361EE;
+            --primary-light: #7895FF;
+            --secondary: #FF6B35;
+            --background: #F5F7FA;
+            --surface: #FFFFFF;
+            --text: #333333;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--background);
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        
+        .card {
+            background-color: var(--surface);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        h1 {
+            color: var(--text);
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .welcome-text {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        .loading-animation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            margin: 0 5px;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+        
+        .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .status-text {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .transport-icon {
+            font-size: 48px;
+            margin: 15px 0;
+        }
+        
+        .footer {
+            background-color: var(--surface);
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .card {
+                padding: 20px;
+                border-radius: 12px;
+            }
+            
+            .tagline {
+                font-size: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            .welcome-text {
+                font-size: 1rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <script>
+        // Function to get query parameters from URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        
+        // Display the user's name and transport type on page load
+        window.onload = function () {
+            const userName = getQueryParam('name') || "User";
+            const transportType = getQueryParam('transport') || "cab";
+            
+            document.getElementById("userName").innerText = userName;
+            
+            // Set the appropriate transport icon
+            let transportIcon = "🚕"; // Default cab
+            if (transportType === "auto") {
+                transportIcon = "🛺";
+            } else if (transportType === "bike") {
+                transportIcon = "🏍";
+            }
+            
+            document.getElementById("transportIcon").innerText = transportIcon;
+            
+            // Simulate finding a ride after 5 seconds
+            setTimeout(function() {
+                document.getElementById("statusText").innerText = "We found your ride! Driver is heading to your location.";
+            }, 5000);
+        };
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>SwiftConnect</h1>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <div class="welcome-text">Hello, <span id="userName"></span>!</div>
+            <div class="tagline">Your destination, just a Swift Connect away!</div>
+            
+            <div id="transportIcon" class="transport-icon">🚕</div>
+            
+            <div class="loading-container">
+                <div class="loading-animation">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div id="statusText" class="status-text">Looking for nearby drivers...</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        &copy; 2025 SwiftConnect - Your Destination, Just a Swift Connect Away
+    </div>
+</body>
+</html>

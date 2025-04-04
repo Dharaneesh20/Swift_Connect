@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftConnect Ride Booking</title>
+    <style>
+        :root {
+            --primary: #4361EE;
+            --primary-light: #7895FF;
+            --secondary: #FF6B35;
+            --background: #F5F7FA;
+            --surface: #FFFFFF;
+            --text: #333333;
+            --text-secondary: #6B7280;
+            --border: #E5E7EB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--background);
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .announcement {
+            padding: 10px 15px;
+            background-color: var(--secondary);
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            animation: slideText 20s linear infinite;
+            white-space: nowrap;
+        }
+        
+        @keyframes slideText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin: 20px 0;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        
+        .form-container {
+            background-color: var(--surface);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: var(--background);
+            color: var(--text);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+        }
+        
+        input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--secondary), #FF8A5B);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 107, 53, 0.3);
+        }
+        
+        .transport-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .transport-option {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background-color: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+        
+        .transport-option.active {
+            border-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+        }
+        
+        .transport-option:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+        
+        .icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            background-color: var(--surface);
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .form-container {
+                padding: 20px;
+                border-radius: 12px;
+            }
+            
+            input, select, .submit-btn {
+                padding: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .form-container {
+                padding: 15px;
+            }
+            
+            .transport-options {
+                flex-direction: column;
+            }
+            
+            .transport-option {
+                margin: 5px 0;
+            }
+        }
+    </style>
+    <script>
+        function submitRide() {
+            // Collect input values from the form
+            const name = document.getElementById("name").value;
+            const transportType = document.querySelector('.transport-option.active').getAttribute('data-type');
+            
+            // Validate form (simple validation)
+            const age = document.getElementById("age").value;
+            const phone = document.getElementById("phone").value;
+            const from = document.getElementById("from").value;
+            const to = document.getElementById("to").value;
+            
+            if (!name || !age || !phone || !from || !to) {
+                alert("Please fill in all required fields");
+                return;
+            }
+            
+            // Redirect to the next page with the user's name and transport type in the URL
+            window.location.href = `looking_for_riders.html?name=${encodeURIComponent(name)}&transport=${encodeURIComponent(transportType)}`;
+        }
+        
+        // Function to select transport option
+        function selectTransport(element) {
+            // Remove active class from all options
+            document.querySelectorAll('.transport-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            
+            // Add active class to selected option
+            element.classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>SwiftConnect</h1>
+    </div>
+    
+    <div class="announcement">
+        Welcome to SwiftConnect! Book your Auto, Bike, or Cab with ease and enjoy safe rides anywhere.
+    </div>
+    
+    <div class="container">
+        <h1>Book Your Ride</h1>
+        
+        <div class="form-container">
+            <div class="transport-options">
+                <div class="transport-option active" data-type="cab" onclick="selectTransport(this)">
+                    <div class="icon">🚕</div>
+                    <div>Cab</div>
+                </div>
+                <div class="transport-option" data-type="auto" onclick="selectTransport(this)">
+                    <div class="icon">🛺</div>
+                    <div>Auto</div>
+                </div>
+                <div class="transport-option" data-type="bike" onclick="selectTransport(this)">
+                    <div class="icon">🏍</div>
+                    <div>Bike</div>
+                </div>
+            </div>
+            
+            <form onsubmit="event.preventDefault(); submitRide();">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" placeholder="Enter your age" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="from">Pickup Location</label>
+                    <input type="text" id="from" name="from" placeholder="Enter starting location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="to">Destination</label>
+                    <input type="text" id="to" name="to" placeholder="Enter destination" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Book Now</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer">
+        &copy; 2025 SwiftConnect - Your Destination, Just a Swift Connect Away
+    </div>
+</body>
+</html>
