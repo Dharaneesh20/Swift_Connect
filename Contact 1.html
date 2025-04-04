@@ -26,7 +26,6 @@
         .heading {
             text-align: center;
             margin-bottom: 20px;
-            color:black
         }
 
         .heading h1 {
@@ -41,8 +40,10 @@
 
         .contact-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
+            width: 100%;
+            justify-content: center;
         }
 
         .contact-container {
@@ -51,7 +52,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding: 20px;
             text-align: center;
-            width: 400px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -61,8 +61,8 @@
         }
 
         .contact-container img {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             border-radius: 8px;
             margin-bottom: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -75,7 +75,7 @@
 
         .contact-container h3 {
             margin: 10px 0 5px;
-            font-size: 1.4em;
+            font-size: 1.2em;
             color: #333;
         }
 
@@ -87,30 +87,24 @@
         .contact-container .contact-info {
             color: #777;
             font-size: 0.9em;
+            word-wrap: break-word;
         }
 
-        /* Additional Styles for Colors */
-        .contact-container:nth-child(1) {
-            background-color: #FFEBEE;
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
         }
 
-        .contact-container:nth-child(2) {
-            background-color: #E3F2FD;
-        }
-
-        .contact-container:nth-child(3) {
-            background-color: #E8F5E9;
-        }
-
-        .contact-container:nth-child(4) {
-            background-color: #FFF3E0;
+        footer h1 {
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
 
     <header style="font-weight: 900;">SWIFT CONNECT</header>
-
 
     <div class="heading">
         <h1>Let's Connect</h1>
@@ -137,24 +131,24 @@
         <div class="contact-container">
             <img src="Dharaaneesh.jpg" alt="Member 3 Photo">
             <h3>Dharaneesh R.S</h3>
-            <p><b>Back-End developer</b></p>
+            <p><b>Back-End Developer</b></p>
             <p class="contact-info">Email: dharaneesh@gmail.com</p>
             <p class="contact-info">Phone: +91 9363963840</p>
         </div>
 
         <div class="contact-container">
             <img src="DP1.png" alt="Member 4 Photo">
-            <h3>deepakraj</h3>
+            <h3>Deepakraj</h3>
             <p><b>UI/UX Designer</b></p>
             <p class="contact-info">Email: deepakraj.sundaresan@gmail.com</p>
             <p class="contact-info">Phone: +91 9444308768</p>
         </div>
     </div>
+
     <footer>
-       <h1><b>Toll free Helpline Number: ☎ 1800 88 2222</b></h1> 
-       <h1><center>🌐 www.swiftconnect.com</center></h1> 
+        <h1><b>Toll free Helpline Number: ☎ 1800 88 2222</b></h1> 
+        <h1><center>🌐 www.swiftconnect.com</center></h1> 
     </footer>
 
 </body>
 </html>
-
