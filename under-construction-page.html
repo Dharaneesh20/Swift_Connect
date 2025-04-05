@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Under Construction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            animation: colorChange 8s infinite;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #34495e;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 25px;
+            background: linear-gradient(90deg, #ff7675, #6c5ce7, #00cec9, #fdcb6e);
+            background-size: 400% 400%;
+            animation: gradient 3s ease infinite;
+            width: 75%;
+            border-radius: 20px;
+        }
+        
+        .gear {
+            font-size: 60px;
+            margin: 20px;
+            display: inline-block;
+            animation: spin 5s linear infinite;
+            color: #3498db;
+        }
+        
+        .team-info {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        
+        .team-info h3 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        
+        .notification {
+            background-color: #2ecc71;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes colorChange {
+            0% { color: #e74c3c; }
+            25% { color: #3498db; }
+            50% { color: #2ecc71; }
+            75% { color: #f39c12; }
+            100% { color: #e74c3c; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🚧 Site Under Construction 🚧</h1>
+        <p class="subtitle">We're working hard to bring you something amazing!</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+        
+        <div>
+            <span class="gear">⚙️</span>
+            <span class="gear" style="animation-direction: reverse;">⚙️</span>
+            <span class="gear">⚙️</span>
+        </div>
+        
+        <div class="team-info">
+            <h3>Our Team is on it!</h3>
+            <p>We're building something special and can't wait to share it with you.</p>
+            <p>The site is currently being updated with new features and content.</p>
+        </div>
+        
+        <div class="notification">
+            <p><strong>Stay tuned!</strong> We'll notify you when we're ready to launch.</p>
+        </div>
+    </div>
+</body>
+</html>
