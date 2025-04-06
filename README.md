@@ -1,3 +1,6 @@
+#For App Login Purpose use
+#Email : admin@admin.com
+#Password : admin
 # Swift Connect
 
 Swift Connect is an innovative multi-modal transport service designed to revolutionize the way people travel. By integrating various modes of transportation into a single seamless platform, Swift Connect ensures efficient, cost-effective, and eco-friendly commuting.
